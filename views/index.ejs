@@ -20,20 +20,14 @@
 
 <body class="overflow-x-hidden bg-white text-brandDark font-sans">
 
-    <!-- Navbar -->
-    <nav id="navbar" class="fixed w-full z-50 top-0 transition-all duration-300 py-4 md:py-5">
+    <nav id="navbar" class="fixed w-full z-50 top-0 transition-all duration-300 py-3 md:py-4">
         <div class="container mx-auto px-4 md:px-6">
             <div class="flex justify-between items-center">
-                <!-- Logo -->
-                <a href="#home" class="flex items-center gap-2.5 font-bold text-xl md:text-2xl text-brandDark">
-                    <div
-                        class="w-9 h-9 md:w-10 md:h-10 bg-gradient-to-br from-brandBlue to-blue-600 text-white rounded-xl flex items-center justify-center shadow-lg shadow-brandBlue/25">
-                        <i class="ph-fill ph-fan text-lg md:text-xl"></i>
-                    </div>
-                    <span class="hidden sm:inline"><%= settings.site_name || 'Curățare AC' %></span>
+                <a href="#home" class="flex items-center">
+                    <img src="<%= settings.logo_url || '/images/logo.webp' %>" alt="<%= settings.site_name || 'Curățare AC' %>"
+                        class="h-12 md:h-14 w-auto">
                 </a>
 
-                <!-- Desktop Menu -->
                 <div class="hidden lg:flex items-center gap-1 bg-slate-50 px-2 py-1.5 rounded-full">
                     <a href="#home"
                         class="nav-link px-4 py-2 rounded-full text-sm font-medium text-textGray hover:text-brandDark hover:bg-white transition-all">Acasă</a>
@@ -47,21 +41,18 @@
                         class="nav-link px-4 py-2 rounded-full text-sm font-medium text-textGray hover:text-brandDark hover:bg-white transition-all">Recenzii</a>
                 </div>
 
-                <!-- CTA Button -->
                 <a href="#contact"
                     class="hidden md:inline-flex items-center gap-2 bg-brandDark hover:bg-slate-800 text-white px-5 py-2.5 rounded-full font-semibold text-sm transition-all hover:shadow-lg">
                     <i class="ph ph-calendar-check"></i>
                     Programare
                 </a>
 
-                <!-- Mobile Menu Button -->
                 <button id="menuBtn"
                     class="lg:hidden w-10 h-10 flex items-center justify-center rounded-xl bg-slate-100 text-brandDark">
                     <i class="ph ph-list text-xl" id="menuIcon"></i>
                 </button>
             </div>
 
-            <!-- Mobile Menu -->
             <div id="mobileMenu"
                 class="lg:hidden hidden mt-4 bg-white rounded-2xl shadow-xl border border-slate-100 p-4">
                 <div class="flex flex-col gap-1">
@@ -102,11 +93,15 @@
 
                     <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-6 leading-tight tracking-tight">
                         <%= settings.hero_title || 'Aer curat,' %>
-                        <span class="text-brandBlue"><%= settings.hero_title_highlight || 'viață sănătoasă' %></span>
+                            <span class="text-brandBlue">
+                                <%= settings.hero_title_highlight || 'viață sănătoasă' %>
+                            </span>
                     </h1>
 
                     <p class="text-lg text-textGray mb-8 leading-relaxed max-w-xl mx-auto lg:mx-0">
-                        <%= settings.hero_description || 'Servicii profesionale de curățare și igienizare pentru aparatele de aer condiționat. Eliminăm bacteriile, mucegaiul și mirosurile neplăcute.' %>
+                        <%= settings.hero_description
+                            || 'Servicii profesionale de curățare și igienizare pentru aparatele de aer condiționat. Eliminăm bacteriile, mucegaiul și mirosurile neplăcute.'
+                            %>
                     </p>
 
                     <div class="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start mb-10">
@@ -156,8 +151,12 @@
                                     <i class="ph-fill ph-check-circle text-green-600 text-2xl"></i>
                                 </div>
                                 <div>
-                                    <p class="font-bold text-brandDark"><%= settings.hero_clients_count || '10+' %> Clienți</p>
-                                    <p class="text-sm text-textGray"><%= settings.hero_clients_text || 'mulțumiți în 2025' %></p>
+                                    <p class="font-bold text-brandDark">
+                                        <%= settings.hero_clients_count || '10+' %> Clienți
+                                    </p>
+                                    <p class="text-sm text-textGray">
+                                        <%= settings.hero_clients_text || 'mulțumiți în 2025' %>
+                                    </p>
                                 </div>
                             </div>
                         </div>
@@ -174,20 +173,36 @@
         <div class="container mx-auto px-4 md:px-6 relative z-10">
             <div class="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-4">
                 <div class="text-center">
-                    <div class="text-3xl md:text-4xl font-extrabold text-white mb-1"><%= settings.stat_clients || '10+' %></div>
-                    <div class="text-slate-400 text-sm"><%= settings.stat_clients_label || 'Clienți mulțumiți' %></div>
+                    <div class="text-3xl md:text-4xl font-extrabold text-white mb-1">
+                        <%= settings.stat_clients || '10+' %>
+                    </div>
+                    <div class="text-slate-400 text-sm">
+                        <%= settings.stat_clients_label || 'Clienți mulțumiți' %>
+                    </div>
                 </div>
                 <div class="text-center">
-                    <div class="text-3xl md:text-4xl font-extrabold text-white mb-1"><%= settings.stat_experience || '5+' %></div>
-                    <div class="text-slate-400 text-sm"><%= settings.stat_experience_label || 'Ani experiență' %></div>
+                    <div class="text-3xl md:text-4xl font-extrabold text-white mb-1">
+                        <%= settings.stat_experience || '5+' %>
+                    </div>
+                    <div class="text-slate-400 text-sm">
+                        <%= settings.stat_experience_label || 'Ani experiență' %>
+                    </div>
                 </div>
                 <div class="text-center">
-                    <div class="text-3xl md:text-4xl font-extrabold text-white mb-1"><%= settings.stat_response || '24h' %></div>
-                    <div class="text-slate-400 text-sm"><%= settings.stat_response_label || 'Timp de răspuns' %></div>
+                    <div class="text-3xl md:text-4xl font-extrabold text-white mb-1">
+                        <%= settings.stat_response || '24h' %>
+                    </div>
+                    <div class="text-slate-400 text-sm">
+                        <%= settings.stat_response_label || 'Timp de răspuns' %>
+                    </div>
                 </div>
                 <div class="text-center">
-                    <div class="text-3xl md:text-4xl font-extrabold text-white mb-1"><%= settings.stat_guarantee || '100%' %></div>
-                    <div class="text-slate-400 text-sm"><%= settings.stat_guarantee_label || 'Garanție calitate' %></div>
+                    <div class="text-3xl md:text-4xl font-extrabold text-white mb-1">
+                        <%= settings.stat_guarantee || '100%' %>
+                    </div>
+                    <div class="text-slate-400 text-sm">
+                        <%= settings.stat_guarantee_label || 'Garanție calitate' %>
+                    </div>
                 </div>
             </div>
         </div>
@@ -268,7 +283,7 @@
 
                 <!-- Image -->
                 <div class="relative">
-                    <img src="https://images.unsplash.com/photo-1585771724684-38269d6639fd?q=80&w=2070&auto=format&fit=crop"
+                    <img src="https://res.cloudinary.com/dqpoet50p/image/upload/v1769013912/xguqyzouorxpcmwgvosq.jpg"
                         alt="Beneficii curățare AC" class="rounded-3xl shadow-xl w-full object-cover aspect-square"
                         loading="lazy">
                     <div class="absolute inset-0 rounded-3xl bg-gradient-to-t from-brandDark/20 to-transparent"></div>
@@ -374,7 +389,9 @@
                                         </div>
                                         <div>
                                             <div class="text-sm text-slate-400">Telefon</div>
-                                            <div class="font-medium"><%= settings.site_phone || '07xx xxx xxx' %></div>
+                                            <div class="font-medium">
+                                                <%= settings.site_phone || '07xx xxx xxx' %>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="flex items-center gap-4">
@@ -384,7 +401,9 @@
                                         </div>
                                         <div>
                                             <div class="text-sm text-slate-400">Email</div>
-                                            <div class="font-medium"><%= settings.site_email || 'contact@curatareac.ro' %></div>
+                                            <div class="font-medium">
+                                                <%= settings.site_email || 'contact@curatareac.ro' %>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="flex items-center gap-4">
@@ -394,7 +413,9 @@
                                         </div>
                                         <div>
                                             <div class="text-sm text-slate-400">Locație</div>
-                                            <div class="font-medium"><%= settings.site_location || 'Galați, România' %></div>
+                                            <div class="font-medium">
+                                                <%= settings.site_location || 'Galați, România' %>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -496,14 +517,12 @@
             <div class="grid md:grid-cols-3 gap-8 mb-8">
                 <!-- Logo & Description -->
                 <div>
-                    <div class="flex items-center gap-2.5 font-bold text-xl mb-4">
-                        <div class="w-9 h-9 bg-brandBlue rounded-xl flex items-center justify-center">
-                            <i class="ph-fill ph-fan"></i>
-                        </div>
-                        <%= settings.site_name || 'Curățare AC' %>
-                    </div>
+                    <a href="#home" class="inline-block mb-4">
+                        <img src="<%= settings.logo_url || '/images/logo.webp' %>" alt="<%= settings.site_name || 'Curățare AC' %>"
+                            class="h-12 w-auto">
+                    </a>
                     <p class="text-slate-400 text-sm leading-relaxed">
-                        Servicii profesionale de curățare și igienizare aer condiționat în <%= settings.site_location || 'Galați' %> și împrejurimi.
+                        <%= settings.footer_description || 'Servicii profesionale de curățare și igienizare aer condiționat în ' + (settings.site_location || 'Galați') + ' și împrejurimi.' %>
                     </p>
                 </div>
 
@@ -511,14 +530,10 @@
                 <div>
                     <h4 class="font-semibold mb-4">Link-uri rapide</h4>
                     <div class="space-y-2">
-                        <a href="#services"
-                            class="block text-slate-400 hover:text-white text-sm transition-colors">Servicii</a>
-                        <a href="#benefits"
-                            class="block text-slate-400 hover:text-white text-sm transition-colors">Beneficii</a>
-                        <a href="#gallery"
-                            class="block text-slate-400 hover:text-white text-sm transition-colors">Galerie</a>
-                        <a href="#contact"
-                            class="block text-slate-400 hover:text-white text-sm transition-colors">Contact</a>
+                        <a href="#services" class="block text-slate-400 hover:text-white text-sm transition-colors">Servicii</a>
+                        <a href="#benefits" class="block text-slate-400 hover:text-white text-sm transition-colors">Beneficii</a>
+                        <a href="#gallery" class="block text-slate-400 hover:text-white text-sm transition-colors">Galerie</a>
+                        <a href="#contact" class="block text-slate-400 hover:text-white text-sm transition-colors">Contact</a>
                     </div>
                 </div>
 
@@ -534,7 +549,7 @@
             </div>
 
             <div class="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4">
-                <p class="text-slate-400 text-sm">&copy; <%= new Date().getFullYear() %> <%= settings.site_name || 'Curățare AC' %>. Toate drepturile rezervate.</p>
+                <p class="text-slate-400 text-sm"><%= settings.footer_copyright || '© ' + new Date().getFullYear() + ' ' + (settings.site_name || 'Curățare AC') + '. Toate drepturile rezervate.' %></p>
                 <div class="flex gap-4">
                     <a href="<%= settings.facebook_url || '#' %>" class="text-slate-400 hover:text-white transition-colors">
                         <i class="ph-fill ph-facebook-logo text-xl"></i>

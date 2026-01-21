@@ -77,6 +77,24 @@
                     <h2 class="text-lg font-bold text-orange-500 mb-4 flex items-center gap-2">
                         <i class="ph ph-identification-card"></i> Informații Site
                     </h2>
+
+                    <!-- Logo Section -->
+                    <div class="mb-6 p-4 bg-slate-900/50 rounded-lg border border-slate-700">
+                        <label class="text-xs text-gray-400 mb-2 block">Logo URL (navbar și footer)</label>
+                        <div class="grid md:grid-cols-3 gap-4 items-center">
+                            <div class="md:col-span-2">
+                                <input type="text" name="logo_url" id="logoUrlInput" value="<%= settings.logo_url || '/images/logo.webp' %>"
+                                    class="w-full bg-slate-800 border border-slate-600 p-3 rounded-lg text-white focus:border-orange-500 outline-none"
+                                    onchange="document.getElementById('logoPreview').src = this.value">
+                                <p class="text-xs text-gray-500 mt-1">Lasă gol pentru logo-ul implicit (/images/logo.webp)</p>
+                            </div>
+                            <div class="flex justify-center">
+                                <img id="logoPreview" src="<%= settings.logo_url || '/images/logo.webp' %>"
+                                    class="h-16 w-auto object-contain bg-slate-800 p-2 rounded-lg border border-slate-600">
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="grid md:grid-cols-2 gap-4">
                         <div>
                             <label class="text-xs text-gray-400 mb-1 block">Nume Site</label>
@@ -126,6 +144,26 @@
                             </label>
                             <input type="text" name="whatsapp_url" value="<%= settings.whatsapp_url || '#' %>"
                                 class="w-full bg-slate-900 border border-slate-700 p-3 rounded-lg text-white focus:border-orange-500 outline-none">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-slate-800 rounded-xl p-6 border border-white/10">
+                    <h2 class="text-lg font-bold text-orange-500 mb-4 flex items-center gap-2">
+                        <i class="ph ph-layout"></i> Footer
+                    </h2>
+                    <div class="grid gap-4">
+                        <div>
+                            <label class="text-xs text-gray-400 mb-1 block">Descriere Footer (sub logo)</label>
+                            <textarea name="footer_description" rows="2"
+                                class="w-full bg-slate-900 border border-slate-700 p-3 rounded-lg text-white focus:border-orange-500 outline-none resize-none"><%= settings.footer_description || 'Servicii profesionale de curățare și igienizare aer condiționat în Galați și împrejurimi.' %></textarea>
+                        </div>
+                        <div>
+                            <label class="text-xs text-gray-400 mb-1 block">Text Copyright</label>
+                            <input type="text" name="footer_copyright" value="<%= settings.footer_copyright || '' %>"
+                                class="w-full bg-slate-900 border border-slate-700 p-3 rounded-lg text-white focus:border-orange-500 outline-none"
+                                placeholder="Lasă gol pentru copyright automat cu numele site-ului">
+                            <p class="text-xs text-gray-500 mt-1">Lasă gol pentru: "© 2025 [Nume Site]. Toate drepturile rezervate."</p>
                         </div>
                     </div>
                 </div>

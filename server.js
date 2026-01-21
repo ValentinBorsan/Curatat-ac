@@ -45,7 +45,7 @@ const requireAuth = (req, res, next) => {
     }
 };
 
-// Helper: convertește array de settings în obiect
+
 function settingsToObject(settingsArray) {
     const obj = {};
     if (settingsArray) {
