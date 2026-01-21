@@ -3,7 +3,9 @@ const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
 const session = require('express-session');
+const pgSession = require('connect-pg-simple')(session);
 const { createClient } = require('@supabase/supabase-js');
+const pg = require('pg');
 
 const app = express();
 const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_KEY);
@@ -14,11 +16,25 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
-// Sesiune simplă pentru Login
+// Sesiune cu PostgreSQL store (Supabase)
 app.use(session({
-    secret: 'secret-key-super-secure',
+    store: new pgSession({
+        pool: new pg.Pool({
+            connectionString: process.env.DATABASE_URL,
+            ssl: { rejectUnauthorized: false },
+            // FORȚĂM IPv4 PENTRU A EVITA EROAREA DE COMPATIBILITATE
+            family: 4 
+        }),
+        tableName: 'session',
+        createTableIfMissing: true
+    }),
+    secret: process.env.SESSION_SECRET || 'secret-key-super-secure',
     resave: false,
-    saveUninitialized: true
+    saveUninitialized: false,
+    cookie: {
+        maxAge: 24 * 60 * 60 * 1000,
+        secure: process.env.NODE_ENV === 'production'
+    }
 }));
 
 // Middleware de verificare autentificare
