@@ -20,8 +20,10 @@ app.use(session({
     store: new pgSession({
         pool: new pg.Pool({
             connectionString: process.env.DATABASE_URL,
-            ssl: { rejectUnauthorized: false },
-            family: 4 // IPv4 fix
+            ssl: { 
+                require: true, 
+                rejectUnauthorized: false 
+            }
         }),
         tableName: 'session',
         createTableIfMissing: true
@@ -31,9 +33,7 @@ app.use(session({
     saveUninitialized: false,
     cookie: {
         maxAge: 24 * 60 * 60 * 1000,
-        secure: process.env.NODE_ENV === 'production', // Devine true pe Render
-        sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax', // <--- Recomandat pentru cross-site cookies
-        httpOnly: true
+        secure: process.env.NODE_ENV === 'production'
     }
 }));
 // Middleware de verificare autentificare
