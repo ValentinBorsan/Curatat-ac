@@ -104,6 +104,7 @@ app.get('/logout', (req, res) => {
 
 // Dashboard Admin
 app.get('/admin', requireAuth, async (req, res) => {
+    // Aici Supabase poate returna null daca e o eroare
     const { data: services } = await supabase.from('services').select('*').order('id');
     const { data: testimonials } = await supabase.from('testimonials').select('*').order('id');
     const { data: gallery } = await supabase.from('gallery').select('*').order('id', { ascending: false });
@@ -112,9 +113,15 @@ app.get('/admin', requireAuth, async (req, res) => {
 
     const settings = settingsToObject(settingsData);
 
-    res.render('admin', { services, testimonials, gallery, benefits, settings });
+   
+    res.render('admin', { 
+        services: services || [], 
+        testimonials: testimonials || [], 
+        gallery: gallery || [], 
+        benefits: benefits || [], 
+        settings 
+    });
 });
-
 app.post('/admin/save-gallery', requireAuth, async (req, res) => {
     const { id, image_url, caption, action } = req.body;
 
