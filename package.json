@@ -1,0 +1,29 @@
+{
+  "name": "curatat-ac",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server.js",
+    "build:css": "postcss src/input.css -o public/css/style.css",
+    "watch:css": "postcss src/input.css -o public/css/style.css --watch"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "@supabase/supabase-js": "^2.91.0",
+    "body-parser": "^2.2.2",
+    "dotenv": "^17.2.3",
+    "ejs": "^4.0.1",
+    "express": "^5.2.1",
+    "express-session": "^1.18.2"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.23",
+    "postcss": "^8.5.6",
+    "postcss-cli": "^11.0.1",
+    "tailwindcss": "^3.4.1"
+  }
+}

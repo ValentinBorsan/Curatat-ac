@@ -1,0 +1,49 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    html {
+        scroll-behavior: smooth;
+    }
+}
+
+@layer components {
+    /* Fade in animation */
+    .animate-fade-in {
+        animation: fadeIn 0.6s ease-out forwards;
+    }
+
+    .animate-fade-in-delay {
+        animation: fadeIn 0.6s ease-out 0.2s forwards;
+        opacity: 0;
+    }
+
+    /* Float animation for cards */
+    .animate-float {
+        animation: float 3s ease-in-out infinite;
+    }
+}
+
+@layer utilities {
+    /* Keyframes */
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes float {
+        0%, 100% {
+            transform: translateY(0);
+        }
+        50% {
+            transform: translateY(-10px);
+        }
+    }
+}

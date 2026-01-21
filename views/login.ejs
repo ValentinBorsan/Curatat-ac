@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <title>Login Admin</title>
+<link rel="stylesheet" href="/css/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+</head>
+<body class="bg-slate-900 text-white flex items-center justify-center h-screen">
+    <div class="bg-slate-800 p-8 rounded-xl shadow-xl w-96 border border-white/10">
+        <h2 class="text-2xl font-bold mb-6 text-center text-orange-500">Admin Login</h2>
+        <% if (error) { %>
+            <div class="bg-red-500/20 text-red-200 p-3 rounded mb-4 text-sm text-center"><%= error %></div>
+        <% } %>
+        <form action="/login" method="POST" class="space-y-4">
+            <input type="password" name="password" placeholder="Parola de acces" class="w-full bg-slate-900 border border-slate-700 p-3 rounded text-white focus:border-orange-500 outline-none">
+            <button class="w-full bg-orange-600 hover:bg-orange-700 py-3 rounded font-bold transition">Intră</button>
+        </form>
+        <a href="/" class="block text-center mt-4 text-gray-500 text-sm hover:text-white">Înapoi la site</a>
+    </div>
+</body>
+</html>

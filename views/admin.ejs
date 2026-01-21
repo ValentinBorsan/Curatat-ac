@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="ro">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard Admin</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <style>
+        .tab-btn.active {
+            background: linear-gradient(135deg, #f97316, #ea580c);
+            color: white;
+        }
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+        }
+    </style>
+</head>
+
+<body class="bg-slate-900 text-white min-h-screen">
+
+    <!-- Header -->
+    <header class="bg-slate-800 border-b border-white/10 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl flex items-center justify-center">
+                        <i class="ph-fill ph-gear text-xl"></i>
+                    </div>
+                    <h1 class="text-xl font-bold">Panou Administrare</h1>
+                </div>
+                <div class="flex gap-4">
+                    <a href="/" target="_blank" class="flex items-center gap-2 bg-slate-700 hover:bg-slate-600 px-4 py-2 rounded-lg text-sm transition">
+                        <i class="ph ph-eye"></i> Vezi Site
+                    </a>
+                    <a href="/logout" class="flex items-center gap-2 bg-red-600/20 hover:bg-red-600/30 text-red-400 px-4 py-2 rounded-lg text-sm transition">
+                        <i class="ph ph-sign-out"></i> Logout
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="max-w-7xl mx-auto px-6 py-8">
+        <!-- Tabs Navigation -->
+        <div class="flex flex-wrap gap-2 mb-8 bg-slate-800/50 p-2 rounded-xl">
+            <button onclick="switchTab('site')" class="tab-btn active flex items-center gap-2 px-4 py-2.5 rounded-lg font-medium text-sm transition hover:bg-slate-700">
+                <i class="ph ph-globe"></i> Site & Contact
+            </button>
+            <button onclick="switchTab('hero')" class="tab-btn flex items-center gap-2 px-4 py-2.5 rounded-lg font-medium text-sm transition hover:bg-slate-700">
+                <i class="ph ph-layout"></i> Hero Section
+            </button>
+            <button onclick="switchTab('stats')" class="tab-btn flex items-center gap-2 px-4 py-2.5 rounded-lg font-medium text-sm transition hover:bg-slate-700">
+                <i class="ph ph-chart-bar"></i> Statistici
+            </button>
+            <button onclick="switchTab('services')" class="tab-btn flex items-center gap-2 px-4 py-2.5 rounded-lg font-medium text-sm transition hover:bg-slate-700">
+                <i class="ph ph-wrench"></i> Servicii
+            </button>
+            <button onclick="switchTab('benefits')" class="tab-btn flex items-center gap-2 px-4 py-2.5 rounded-lg font-medium text-sm transition hover:bg-slate-700">
+                <i class="ph ph-check-circle"></i> Beneficii
+            </button>
+            <button onclick="switchTab('testimonials')" class="tab-btn flex items-center gap-2 px-4 py-2.5 rounded-lg font-medium text-sm transition hover:bg-slate-700">
+                <i class="ph ph-users"></i> Testimoniale
+            </button>
+            <button onclick="switchTab('gallery')" class="tab-btn flex items-center gap-2 px-4 py-2.5 rounded-lg font-medium text-sm transition hover:bg-slate-700">
+                <i class="ph ph-image"></i> Galerie
+            </button>
+        </div>
+
+        <!-- TAB: Site & Contact -->
+        <div id="tab-site" class="tab-content active">
+            <form action="/admin/save-settings" method="POST" class="space-y-6">
+                <div class="bg-slate-800 rounded-xl p-6 border border-white/10">
+                    <h2 class="text-lg font-bold text-orange-500 mb-4 flex items-center gap-2">
+                        <i class="ph ph-identification-card"></i> Informații Site
+                    </h2>
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="text-xs text-gray-400 mb-1 block">Nume Site</label>
+                            <input type="text" name="site_name" value="<%= settings.site_name || 'Curățare AC' %>"
+                                class="w-full bg-slate-900 border border-slate-700 p-3 rounded-lg text-white focus:border-orange-500 outline-none">
+                        </div>
+                        <div>
+                            <label class="text-xs text-gray-400 mb-1 block">Telefon (format WhatsApp: +40...)</label>
+                            <input type="text" name="site_phone" value="<%= settings.site_phone || '' %>"
+                                class="w-full bg-slate-900 border border-slate-700 p-3 rounded-lg text-white focus:border-orange-500 outline-none">
+                        </div>
+                        <div>
+                            <label class="text-xs text-gray-400 mb-1 block">Email</label>
+                            <input type="email" name="site_email" value="<%= settings.site_email || '' %>"
+                                class="w-full bg-slate-900 border border-slate-700 p-3 rounded-lg text-white focus:border-orange-500 outline-none">
+                        </div>
+                        <div>
+                            <label class="text-xs text-gray-400 mb-1 block">Locație</label>
+                            <input type="text" name="site_location" value="<%= settings.site_location || '' %>"
+                                class="w-full bg-slate-900 border border-slate-700 p-3 rounded-lg text-white focus:border-orange-500 outline-none">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-slate-800 rounded-xl p-6 border border-white/10">
+                    <h2 class="text-lg font-bold text-orange-500 mb-4 flex items-center gap-2">
+                        <i class="ph ph-share-network"></i> Social Media (URL-uri)
+                    </h2>
+                    <div class="grid md:grid-cols-3 gap-4">
+                        <div>
+                            <label class="text-xs text-gray-400 mb-1 block flex items-center gap-1">
+                                <i class="ph-fill ph-facebook-logo text-blue-500"></i> Facebook
+                            </label>
+                            <input type="text" name="facebook_url" value="<%= settings.facebook_url || '#' %>"
+                                class="w-full bg-slate-900 border border-slate-700 p-3 rounded-lg text-white focus:border-orange-500 outline-none">
+                        </div>
+                        <div>
+                            <label class="text-xs text-gray-400 mb-1 block flex items-center gap-1">
+                                <i class="ph-fill ph-instagram-logo text-pink-500"></i> Instagram
+                            </label>
+                            <input type="text" name="instagram_url" value="<%= settings.instagram_url || '#' %>"
+                                class="w-full bg-slate-900 border border-slate-700 p-3 rounded-lg text-white focus:border-orange-500 outline-none">
+                        </div>
+                        <div>
+                            <label class="text-xs text-gray-400 mb-1 block flex items-center gap-1">
+                                <i class="ph-fill ph-whatsapp-logo text-green-500"></i> WhatsApp (link direct)
+                            </label>
+                            <input type="text" name="whatsapp_url" value="<%= settings.whatsapp_url || '#' %>"
+                                class="w-full bg-slate-900 border border-slate-700 p-3 rounded-lg text-white focus:border-orange-500 outline-none">
+                        </div>
+                    </div>
+                </div>
+
+                <button type="submit" class="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 px-6 py-3 rounded-lg font-bold flex items-center gap-2 transition">
+                    <i class="ph ph-floppy-disk"></i> Salvează Modificările
+                </button>
+            </form>
+        </div>
+
+        <!-- TAB: Hero Section -->
+        <div id="tab-hero" class="tab-content">
+            <form action="/admin/save-settings" method="POST" class="space-y-6">
+                <div class="bg-slate-800 rounded-xl p-6 border border-white/10">
+                    <h2 class="text-lg font-bold text-orange-500 mb-4 flex items-center gap-2">
+                        <i class="ph ph-text-aa"></i> Texte Hero
+                    </h2>
+                    <div class="grid gap-4">
+                        <div>
+                            <label class="text-xs text-gray-400 mb-1 block">Badge (text mic deasupra titlului)</label>
+                            <input type="text" name="hero_badge" value="<%= settings.hero_badge || 'Disponibil în Galați' %>"
+                                class="w-full bg-slate-900 border border-slate-700 p-3 rounded-lg text-white focus:border-orange-500 outline-none">
+                        </div>
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="text-xs text-gray-400 mb-1 block">Titlu (prima parte)</label>
+                                <input type="text" name="hero_title" value="<%= settings.hero_title || 'Aer curat,' %>"
+                                    class="w-full bg-slate-900 border border-slate-700 p-3 rounded-lg text-white focus:border-orange-500 outline-none">
+                            </div>
+                            <div>
+                                <label class="text-xs text-gray-400 mb-1 block">Titlu highlight (partea colorată)</label>
+                                <input type="text" name="hero_title_highlight" value="<%= settings.hero_title_highlight || 'viață sănătoasă' %>"
+                                    class="w-full bg-slate-900 border border-slate-700 p-3 rounded-lg text-white focus:border-orange-500 outline-none text-brandBlue">
+                            </div>
+                        </div>
+                        <div>
+                            <label class="text-xs text-gray-400 mb-1 block">Descriere</label>
+                            <textarea name="hero_description" rows="3"
+                                class="w-full bg-slate-900 border border-slate-700 p-3 rounded-lg text-white focus:border-orange-500 outline-none resize-none"><%= settings.hero_description || '' %></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-slate-800 rounded-xl p-6 border border-white/10">
+                    <h2 class="text-lg font-bold text-orange-500 mb-4 flex items-center gap-2">
+                        <i class="ph ph-image"></i> Imagine Hero
+                    </h2>
+                    <div class="grid md:grid-cols-2 gap-6 items-start">
+                        <div>
+                            <label class="text-xs text-gray-400 mb-1 block">URL Imagine (Unsplash sau direct link)</label>
+                            <input type="text" name="hero_image" id="heroImageInput" value="<%= settings.hero_image || '' %>"
+                                class="w-full bg-slate-900 border border-slate-700 p-3 rounded-lg text-white focus:border-orange-500 outline-none"
+                                onchange="document.getElementById('heroPreview').src = this.value">
+                        </div>
+                        <div>
+                            <label class="text-xs text-gray-400 mb-1 block">Preview</label>
+                            <img id="heroPreview" src="<%= settings.hero_image || 'https://via.placeholder.com/400x300' %>"
+                                class="w-full h-48 object-cover rounded-lg border border-slate-700">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-slate-800 rounded-xl p-6 border border-white/10">
+                    <h2 class="text-lg font-bold text-orange-500 mb-4 flex items-center gap-2">
+                        <i class="ph ph-users-three"></i> Card Clienți (floating card)
+                    </h2>
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="text-xs text-gray-400 mb-1 block">Număr clienți (ex: 100+)</label>
+                            <input type="text" name="hero_clients_count" value="<%= settings.hero_clients_count || '10+' %>"
+                                class="w-full bg-slate-900 border border-slate-700 p-3 rounded-lg text-white focus:border-orange-500 outline-none">
+                        </div>
+                        <div>
+                            <label class="text-xs text-gray-400 mb-1 block">Text sub număr</label>
+                            <input type="text" name="hero_clients_text" value="<%= settings.hero_clients_text || 'mulțumiți în 2025' %>"
+                                class="w-full bg-slate-900 border border-slate-700 p-3 rounded-lg text-white focus:border-orange-500 outline-none">
+                        </div>
+                    </div>
+                </div>
+
+                <button type="submit" class="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 px-6 py-3 rounded-lg font-bold flex items-center gap-2 transition">
+                    <i class="ph ph-floppy-disk"></i> Salvează Modificările
+                </button>
+            </form>
+        </div>
+
+        <!-- TAB: Statistics -->
+        <div id="tab-stats" class="tab-content">
+            <form action="/admin/save-settings" method="POST" class="space-y-6">
+                <div class="bg-slate-800 rounded-xl p-6 border border-white/10">
+                    <h2 class="text-lg font-bold text-orange-500 mb-4 flex items-center gap-2">
+                        <i class="ph ph-chart-bar"></i> Statistici (banda neagră)
+                    </h2>
+                    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                        <!-- Stat 1 -->
+                        <div class="bg-slate-900/50 p-4 rounded-lg border border-slate-700">
+                            <label class="text-xs text-gray-400 mb-1 block">Valoare 1</label>
+                            <input type="text" name="stat_clients" value="<%= settings.stat_clients || '10+' %>"
+                                class="w-full bg-slate-800 border border-slate-600 p-2 rounded text-white text-2xl font-bold text-center mb-2">
+                            <input type="text" name="stat_clients_label" value="<%= settings.stat_clients_label || 'Clienți mulțumiți' %>"
+                                class="w-full bg-slate-800 border border-slate-600 p-2 rounded text-gray-400 text-sm text-center">
+                        </div>
+                        <!-- Stat 2 -->
+                        <div class="bg-slate-900/50 p-4 rounded-lg border border-slate-700">
+                            <label class="text-xs text-gray-400 mb-1 block">Valoare 2</label>
+                            <input type="text" name="stat_experience" value="<%= settings.stat_experience || '5+' %>"
+                                class="w-full bg-slate-800 border border-slate-600 p-2 rounded text-white text-2xl font-bold text-center mb-2">
+                            <input type="text" name="stat_experience_label" value="<%= settings.stat_experience_label || 'Ani experiență' %>"
+                                class="w-full bg-slate-800 border border-slate-600 p-2 rounded text-gray-400 text-sm text-center">
+                        </div>
+                        <!-- Stat 3 -->
+                        <div class="bg-slate-900/50 p-4 rounded-lg border border-slate-700">
+                            <label class="text-xs text-gray-400 mb-1 block">Valoare 3</label>
+                            <input type="text" name="stat_response" value="<%= settings.stat_response || '24h' %>"
+                                class="w-full bg-slate-800 border border-slate-600 p-2 rounded text-white text-2xl font-bold text-center mb-2">
+                            <input type="text" name="stat_response_label" value="<%= settings.stat_response_label || 'Timp de răspuns' %>"
+                                class="w-full bg-slate-800 border border-slate-600 p-2 rounded text-gray-400 text-sm text-center">
+                        </div>
+                        <!-- Stat 4 -->
+                        <div class="bg-slate-900/50 p-4 rounded-lg border border-slate-700">
+                            <label class="text-xs text-gray-400 mb-1 block">Valoare 4</label>
+                            <input type="text" name="stat_guarantee" value="<%= settings.stat_guarantee || '100%' %>"
+                                class="w-full bg-slate-800 border border-slate-600 p-2 rounded text-white text-2xl font-bold text-center mb-2">
+                            <input type="text" name="stat_guarantee_label" value="<%= settings.stat_guarantee_label || 'Garanție calitate' %>"
+                                class="w-full bg-slate-800 border border-slate-600 p-2 rounded text-gray-400 text-sm text-center">
+                        </div>
+                    </div>
+                </div>
+
+                <button type="submit" class="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 px-6 py-3 rounded-lg font-bold flex items-center gap-2 transition">
+                    <i class="ph ph-floppy-disk"></i> Salvează Modificările
+                </button>
+            </form>
+        </div>
+
+        <!-- TAB: Services -->
+        <div id="tab-services" class="tab-content">
+            <div class="bg-slate-800 rounded-xl p-6 border border-white/10">
+                <h2 class="text-lg font-bold text-orange-500 mb-4 flex items-center gap-2">
+                    <i class="ph ph-wrench"></i> Servicii
+                </h2>
+
+                <div class="grid gap-4">
+                    <!-- Add new -->
+                    <form action="/admin/save-service" method="POST"
+                        class="bg-slate-900/50 p-4 rounded-lg border border-dashed border-gray-600 grid md:grid-cols-4 gap-4 items-end">
+                        <div>
+                            <label class="text-xs text-gray-500">Icon (ex: ph-wind)</label>
+                            <input type="text" name="icon" placeholder="ph-wind"
+                                class="w-full bg-slate-800 border border-slate-700 p-2 rounded text-sm text-white">
+                        </div>
+                        <div>
+                            <label class="text-xs text-gray-500">Titlu</label>
+                            <input type="text" name="title" placeholder="Titlu Serviciu"
+                                class="w-full bg-slate-800 border border-slate-700 p-2 rounded text-sm text-white" required>
+                        </div>
+                        <div>
+                            <label class="text-xs text-gray-500">Descriere</label>
+                            <input type="text" name="description" placeholder="Descriere scurta..."
+                                class="w-full bg-slate-800 border border-slate-700 p-2 rounded text-sm text-white" required>
+                        </div>
+                        <button type="submit"
+                            class="bg-green-600 hover:bg-green-700 px-4 py-2 rounded text-sm font-bold h-fit">
+                            <i class="ph ph-plus"></i> Adaugă
+                        </button>
+                    </form>
+
+                    <!-- Existing -->
+                    <% services.forEach(s => { %>
+                    <form action="/admin/save-service" method="POST"
+                        class="flex flex-wrap md:flex-nowrap gap-4 items-center bg-slate-700/30 p-4 rounded-lg">
+                        <input type="hidden" name="id" value="<%= s.id %>">
+                        <div class="w-12 flex justify-center">
+                            <i class="ph <%= s.icon %> text-2xl text-orange-500"></i>
+                        </div>
+                        <input type="text" name="icon" value="<%= s.icon %>"
+                            class="w-28 bg-transparent border-b border-gray-600 text-sm focus:border-orange-500 outline-none">
+                        <input type="text" name="title" value="<%= s.title %>"
+                            class="w-40 bg-transparent border-b border-gray-600 font-bold focus:border-orange-500 outline-none">
+                        <input type="text" name="description" value="<%= s.description %>"
+                            class="flex-1 bg-transparent border-b border-gray-600 text-sm text-gray-300 focus:border-orange-500 outline-none">
+                        <div class="flex gap-2">
+                            <button type="submit" name="action" value="update"
+                                class="text-blue-400 hover:text-blue-300 p-2"><i class="ph ph-floppy-disk"></i></button>
+                            <button type="submit" name="action" value="delete"
+                                class="text-red-400 hover:text-red-300 p-2"
+                                onclick="return confirm('Sigur ștergi?')"><i class="ph ph-trash"></i></button>
+                        </div>
+                    </form>
+                    <% }) %>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB: Benefits -->
+        <div id="tab-benefits" class="tab-content">
+            <div class="bg-slate-800 rounded-xl p-6 border border-white/10">
+                <h2 class="text-lg font-bold text-orange-500 mb-4 flex items-center gap-2">
+                    <i class="ph ph-check-circle"></i> Beneficii ("De ce noi?")
+                </h2>
+
+                <div class="grid gap-4">
+                    <!-- Add new -->
+                    <form action="/admin/save-benefit" method="POST"
+                        class="bg-slate-900/50 p-4 rounded-lg border border-dashed border-gray-600 grid md:grid-cols-5 gap-4 items-end">
+                        <div>
+                            <label class="text-xs text-gray-500">Icon</label>
+                            <input type="text" name="icon" placeholder="ph-check"
+                                class="w-full bg-slate-800 border border-slate-700 p-2 rounded text-sm text-white">
+                        </div>
+                        <div>
+                            <label class="text-xs text-gray-500">Culoare</label>
+                            <select name="color"
+                                class="w-full bg-slate-800 border border-slate-700 p-2 rounded text-sm text-white">
+                                <option value="red">Roșu</option>
+                                <option value="green">Verde</option>
+                                <option value="blue">Albastru</option>
+                                <option value="orange">Portocaliu</option>
+                                <option value="purple">Mov</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="text-xs text-gray-500">Titlu</label>
+                            <input type="text" name="title" placeholder="Titlu"
+                                class="w-full bg-slate-800 border border-slate-700 p-2 rounded text-sm text-white" required>
+                        </div>
+                        <div>
+                            <label class="text-xs text-gray-500">Descriere</label>
+                            <input type="text" name="description" placeholder="Descriere..."
+                                class="w-full bg-slate-800 border border-slate-700 p-2 rounded text-sm text-white" required>
+                        </div>
+                        <button type="submit"
+                            class="bg-green-600 hover:bg-green-700 px-4 py-2 rounded text-sm font-bold h-fit">
+                            <i class="ph ph-plus"></i> Adaugă
+                        </button>
+                    </form>
+
+                    <!-- Existing -->
+                    <% benefits.forEach(b => { %>
+                    <form action="/admin/save-benefit" method="POST"
+                        class="flex flex-wrap md:flex-nowrap gap-4 items-center bg-slate-700/30 p-4 rounded-lg border-l-4 border-<%= b.color %>-500">
+                        <input type="hidden" name="id" value="<%= b.id %>">
+                        <div class="w-10 flex justify-center">
+                            <i class="ph <%= b.icon %> text-2xl text-<%= b.color %>-500"></i>
+                        </div>
+                        <input type="text" name="icon" value="<%= b.icon %>"
+                            class="w-24 bg-transparent border-b border-gray-600 text-xs text-gray-400 focus:border-orange-500 outline-none">
+                        <select name="color"
+                            class="bg-slate-800 border border-slate-600 text-xs rounded p-1 text-white">
+                            <option value="red" <%= b.color=='red' ? 'selected' : '' %>>Roșu</option>
+                            <option value="green" <%= b.color=='green' ? 'selected' : '' %>>Verde</option>
+                            <option value="blue" <%= b.color=='blue' ? 'selected' : '' %>>Albastru</option>
+                            <option value="orange" <%= b.color=='orange' ? 'selected' : '' %>>Portocaliu</option>
+                            <option value="purple" <%= b.color=='purple' ? 'selected' : '' %>>Mov</option>
+                        </select>
+                        <input type="text" name="title" value="<%= b.title %>"
+                            class="w-40 bg-transparent border-b border-gray-600 font-bold focus:border-orange-500 outline-none">
+                        <input type="text" name="description" value="<%= b.description %>"
+                            class="flex-1 bg-transparent border-b border-gray-600 text-sm text-gray-300 focus:border-orange-500 outline-none">
+                        <div class="flex gap-2">
+                            <button type="submit" name="action" value="update"
+                                class="text-blue-400 hover:text-blue-300 p-2"><i class="ph ph-floppy-disk"></i></button>
+                            <button type="submit" name="action" value="delete"
+                                class="text-red-400 hover:text-red-300 p-2"
+                                onclick="return confirm('Sigur ștergi?')"><i class="ph ph-trash"></i></button>
+                        </div>
+                    </form>
+                    <% }) %>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB: Testimonials -->
+        <div id="tab-testimonials" class="tab-content">
+            <div class="bg-slate-800 rounded-xl p-6 border border-white/10">
+                <h2 class="text-lg font-bold text-orange-500 mb-4 flex items-center gap-2">
+                    <i class="ph ph-users"></i> Testimoniale
+                </h2>
+
+                <div class="grid gap-4">
+                    <!-- Add new -->
+                    <form action="/admin/save-testimonial" method="POST"
+                        class="bg-slate-900/50 p-4 rounded-lg border border-dashed border-gray-600 grid md:grid-cols-5 gap-4 items-end">
+                        <div>
+                            <label class="text-xs text-gray-500">Nume</label>
+                            <input type="text" name="client_name" placeholder="Nume Client"
+                                class="w-full bg-slate-800 border border-slate-700 p-2 rounded text-sm text-white" required>
+                        </div>
+                        <div>
+                            <label class="text-xs text-gray-500">Tip/Locație</label>
+                            <input type="text" name="client_type" placeholder="ex: Galați"
+                                class="w-full bg-slate-800 border border-slate-700 p-2 rounded text-sm text-white">
+                        </div>
+                        <div class="md:col-span-2">
+                            <label class="text-xs text-gray-500">Feedback</label>
+                            <input type="text" name="feedback" placeholder="Ce a spus..."
+                                class="w-full bg-slate-800 border border-slate-700 p-2 rounded text-sm text-white" required>
+                        </div>
+                        <div class="flex gap-2 items-end">
+                            <div class="flex-1">
+                                <label class="text-xs text-gray-500">Rating</label>
+                                <input type="number" name="rating" value="5" max="5" min="1"
+                                    class="w-full bg-slate-800 border border-slate-700 p-2 rounded text-sm text-white">
+                            </div>
+                            <button type="submit"
+                                class="bg-green-600 hover:bg-green-700 px-4 py-2 rounded text-sm font-bold">
+                                <i class="ph ph-plus"></i>
+                            </button>
+                        </div>
+                    </form>
+
+                    <!-- Existing -->
+                    <% testimonials.forEach(t => { %>
+                    <form action="/admin/save-testimonial" method="POST"
+                        class="flex flex-wrap md:flex-nowrap gap-4 items-center bg-slate-700/30 p-4 rounded-lg">
+                        <input type="hidden" name="id" value="<%= t.id %>">
+                        <input type="text" name="client_name" value="<%= t.client_name %>"
+                            class="w-32 bg-transparent border-b border-gray-600 font-bold focus:border-orange-500 outline-none">
+                        <input type="text" name="client_type" value="<%= t.client_type %>"
+                            class="w-28 bg-transparent border-b border-gray-600 text-xs text-gray-400 focus:border-orange-500 outline-none">
+                        <input type="text" name="feedback" value="<%= t.feedback %>"
+                            class="flex-1 bg-transparent border-b border-gray-600 text-sm text-gray-300 focus:border-orange-500 outline-none">
+                        <div class="flex items-center gap-1 text-amber-400">
+                            <% for(let i=0; i<t.rating; i++) { %><i class="ph-fill ph-star text-sm"></i><% } %>
+                        </div>
+                        <input type="number" name="rating" value="<%= t.rating %>"
+                            class="w-12 bg-transparent border-b border-gray-600 text-center focus:border-orange-500 outline-none">
+                        <div class="flex gap-2">
+                            <button type="submit" name="action" value="update"
+                                class="text-blue-400 hover:text-blue-300 p-2"><i class="ph ph-floppy-disk"></i></button>
+                            <button type="submit" name="action" value="delete"
+                                class="text-red-400 hover:text-red-300 p-2"
+                                onclick="return confirm('Sigur ștergi?')"><i class="ph ph-trash"></i></button>
+                        </div>
+                    </form>
+                    <% }) %>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB: Gallery -->
+        <div id="tab-gallery" class="tab-content">
+            <div class="bg-slate-800 rounded-xl p-6 border border-white/10">
+                <h2 class="text-lg font-bold text-orange-500 mb-4 flex items-center gap-2">
+                    <i class="ph ph-image"></i> Galerie Foto
+                </h2>
+
+                <div class="grid gap-6">
+                    <!-- Add new -->
+                    <form action="/admin/save-gallery" method="POST"
+                        class="bg-slate-900/50 p-4 rounded-lg border border-dashed border-gray-600 grid md:grid-cols-3 gap-4 items-end">
+                        <div class="md:col-span-2">
+                            <label class="text-xs text-gray-500">URL Imagine</label>
+                            <input type="text" name="image_url" placeholder="https://..."
+                                class="w-full bg-slate-800 border border-slate-700 p-2 rounded text-sm text-white" required>
+                        </div>
+                        <div class="flex gap-2 items-end">
+                            <div class="flex-1">
+                                <label class="text-xs text-gray-500">Descriere</label>
+                                <input type="text" name="caption" placeholder="ex: Curățare filtru"
+                                    class="w-full bg-slate-800 border border-slate-700 p-2 rounded text-sm text-white" required>
+                            </div>
+                            <button type="submit"
+                                class="bg-green-600 hover:bg-green-700 px-4 py-2 rounded text-sm font-bold">
+                                <i class="ph ph-plus"></i>
+                            </button>
+                        </div>
+                    </form>
+
+                    <!-- Existing -->
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                        <% gallery.forEach(img => { %>
+                        <form action="/admin/save-gallery" method="POST" class="relative group">
+                            <input type="hidden" name="id" value="<%= img.id %>">
+                            <div class="aspect-square rounded-lg overflow-hidden border border-slate-600 relative">
+                                <img src="<%= img.image_url %>"
+                                    class="w-full h-full object-cover opacity-70 group-hover:opacity-100 transition">
+                                <div class="absolute top-2 right-2">
+                                    <button type="submit" name="action" value="delete"
+                                        class="bg-red-600 text-white p-1.5 rounded hover:bg-red-500 shadow-lg"
+                                        onclick="return confirm('Ștergi poza?')">
+                                        <i class="ph ph-trash"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="mt-2 flex gap-2">
+                                <input type="text" name="caption" value="<%= img.caption %>"
+                                    class="bg-slate-900 border border-slate-700 text-xs p-1.5 rounded text-white w-full">
+                                <button type="submit" name="action" value="update"
+                                    class="text-blue-400 hover:text-blue-300"><i class="ph ph-floppy-disk"></i></button>
+                            </div>
+                            <input type="hidden" name="image_url" value="<%= img.image_url %>">
+                        </form>
+                        <% }) %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function switchTab(tabName) {
+            // Hide all tabs
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+
+            // Show selected tab
+            document.getElementById('tab-' + tabName).classList.add('active');
+            event.target.closest('.tab-btn').classList.add('active');
+
+            // Save to localStorage
+            localStorage.setItem('adminActiveTab', tabName);
+        }
+
+        // Restore last active tab
+        document.addEventListener('DOMContentLoaded', () => {
+            const lastTab = localStorage.getItem('adminActiveTab');
+            if (lastTab) {
+                const tabBtn = document.querySelector(`[onclick="switchTab('${lastTab}')"]`);
+                if (tabBtn) tabBtn.click();
+            }
+        });
+    </script>
+</body>
+
+</html>

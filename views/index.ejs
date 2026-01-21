@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="ro" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        <%= title %>
+    </title>
+    <meta name="description"
+        content="Servicii profesionale de curățare și igienizare aer condiționat în Galați. Scapă de bacterii, mirosuri și praf.">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="icon" type="image/png" href="/images/favicon.ico">
+    <link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+</head>
+
+<body class="overflow-x-hidden bg-white text-brandDark font-sans">
+
+    <!-- Navbar -->
+    <nav id="navbar" class="fixed w-full z-50 top-0 transition-all duration-300 py-4 md:py-5">
+        <div class="container mx-auto px-4 md:px-6">
+            <div class="flex justify-between items-center">
+                <!-- Logo -->
+                <a href="#home" class="flex items-center gap-2.5 font-bold text-xl md:text-2xl text-brandDark">
+                    <div
+                        class="w-9 h-9 md:w-10 md:h-10 bg-gradient-to-br from-brandBlue to-blue-600 text-white rounded-xl flex items-center justify-center shadow-lg shadow-brandBlue/25">
+                        <i class="ph-fill ph-fan text-lg md:text-xl"></i>
+                    </div>
+                    <span class="hidden sm:inline"><%= settings.site_name || 'Curățare AC' %></span>
+                </a>
+
+                <!-- Desktop Menu -->
+                <div class="hidden lg:flex items-center gap-1 bg-slate-50 px-2 py-1.5 rounded-full">
+                    <a href="#home"
+                        class="nav-link px-4 py-2 rounded-full text-sm font-medium text-textGray hover:text-brandDark hover:bg-white transition-all">Acasă</a>
+                    <a href="#services"
+                        class="nav-link px-4 py-2 rounded-full text-sm font-medium text-textGray hover:text-brandDark hover:bg-white transition-all">Servicii</a>
+                    <a href="#benefits"
+                        class="nav-link px-4 py-2 rounded-full text-sm font-medium text-textGray hover:text-brandDark hover:bg-white transition-all">Beneficii</a>
+                    <a href="#gallery"
+                        class="nav-link px-4 py-2 rounded-full text-sm font-medium text-textGray hover:text-brandDark hover:bg-white transition-all">Galerie</a>
+                    <a href="#testimonials"
+                        class="nav-link px-4 py-2 rounded-full text-sm font-medium text-textGray hover:text-brandDark hover:bg-white transition-all">Recenzii</a>
+                </div>
+
+                <!-- CTA Button -->
+                <a href="#contact"
+                    class="hidden md:inline-flex items-center gap-2 bg-brandDark hover:bg-slate-800 text-white px-5 py-2.5 rounded-full font-semibold text-sm transition-all hover:shadow-lg">
+                    <i class="ph ph-calendar-check"></i>
+                    Programare
+                </a>
+
+                <!-- Mobile Menu Button -->
+                <button id="menuBtn"
+                    class="lg:hidden w-10 h-10 flex items-center justify-center rounded-xl bg-slate-100 text-brandDark">
+                    <i class="ph ph-list text-xl" id="menuIcon"></i>
+                </button>
+            </div>
+
+            <!-- Mobile Menu -->
+            <div id="mobileMenu"
+                class="lg:hidden hidden mt-4 bg-white rounded-2xl shadow-xl border border-slate-100 p-4">
+                <div class="flex flex-col gap-1">
+                    <a href="#home"
+                        class="mobile-link px-4 py-3 rounded-xl text-textGray hover:bg-slate-50 hover:text-brandDark font-medium transition-all">Acasă</a>
+                    <a href="#services"
+                        class="mobile-link px-4 py-3 rounded-xl text-textGray hover:bg-slate-50 hover:text-brandDark font-medium transition-all">Servicii</a>
+                    <a href="#benefits"
+                        class="mobile-link px-4 py-3 rounded-xl text-textGray hover:bg-slate-50 hover:text-brandDark font-medium transition-all">Beneficii</a>
+                    <a href="#gallery"
+                        class="mobile-link px-4 py-3 rounded-xl text-textGray hover:bg-slate-50 hover:text-brandDark font-medium transition-all">Galerie</a>
+                    <a href="#testimonials"
+                        class="mobile-link px-4 py-3 rounded-xl text-textGray hover:bg-slate-50 hover:text-brandDark font-medium transition-all">Recenzii</a>
+                    <hr class="my-2 border-slate-100">
+                    <a href="#contact"
+                        class="px-4 py-3 rounded-xl bg-brandDark text-white font-semibold text-center">Programare</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="pt-28 pb-16 md:pt-36 md:pb-24 relative overflow-hidden">
+        <!-- Background Elements -->
+        <div class="absolute inset-0 bg-gradient-to-b from-blue-50/50 to-white pointer-events-none"></div>
+        <div class="absolute top-20 right-0 w-96 h-96 bg-brandBlue/5 rounded-full blur-3xl"></div>
+        <div class="absolute bottom-0 left-0 w-72 h-72 bg-orange-500/5 rounded-full blur-3xl"></div>
+
+        <div class="container mx-auto px-4 md:px-6 relative z-10">
+            <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+                <!-- Text Content -->
+                <div class="text-center lg:text-left animate-fade-in">
+                    <div
+                        class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-brandBlue/10 text-brandBlue text-sm font-semibold mb-6">
+                        <span class="w-2 h-2 bg-brandBlue rounded-full animate-pulse"></span>
+                        <%= settings.hero_badge || 'Disponibil în Galați' %>
+                    </div>
+
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-6 leading-tight tracking-tight">
+                        <%= settings.hero_title || 'Aer curat,' %>
+                        <span class="text-brandBlue"><%= settings.hero_title_highlight || 'viață sănătoasă' %></span>
+                    </h1>
+
+                    <p class="text-lg text-textGray mb-8 leading-relaxed max-w-xl mx-auto lg:mx-0">
+                        <%= settings.hero_description || 'Servicii profesionale de curățare și igienizare pentru aparatele de aer condiționat. Eliminăm bacteriile, mucegaiul și mirosurile neplăcute.' %>
+                    </p>
+
+                    <div class="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start mb-10">
+                        <a href="#contact"
+                            class="inline-flex items-center justify-center gap-2 bg-accentOrange hover:bg-accentHover text-white px-7 py-3.5 rounded-full font-semibold shadow-lg shadow-orange-500/25 transition-all hover:-translate-y-0.5 active:translate-y-0">
+                            Solicită ofertă
+                            <i class="ph-bold ph-arrow-right"></i>
+                        </a>
+                        <a href="tel:<%= settings.site_phone || '' %>"
+                            class="inline-flex items-center justify-center gap-2 bg-white hover:bg-slate-50 text-brandDark border border-slate-200 px-7 py-3.5 rounded-full font-semibold transition-all">
+                            <i class="ph ph-phone"></i>
+                            Sună acum
+                        </a>
+                    </div>
+
+                    <!-- Trust Indicators -->
+                    <div
+                        class="flex flex-wrap items-center gap-6 justify-center lg:justify-start text-sm text-textGray">
+                        <div class="flex items-center gap-2">
+                            <i class="ph-fill ph-seal-check text-brandBlue text-lg"></i>
+                            <span>Garanție servicii</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <i class="ph-fill ph-clock text-brandBlue text-lg"></i>
+                            <span>Răspuns rapid</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <i class="ph-fill ph-star text-brandBlue text-lg"></i>
+                            <span>5.0 pe Google</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hero Image -->
+                <div class="relative animate-fade-in-delay">
+                    <div class="relative">
+                        <img src="<%= settings.hero_image || 'https://images.unsplash.com/photo-1621905251189-08b45d6a269e?q=80&w=2069&auto=format&fit=crop' %>"
+                            alt="Curățare profesională aer condiționat"
+                            class="rounded-3xl shadow-2xl w-full object-cover aspect-[4/3] border border-slate-100"
+                            loading="eager">
+
+                        <!-- Floating Card -->
+                        <div
+                            class="absolute -bottom-4 -left-4 md:-bottom-6 md:-left-6 bg-white rounded-2xl shadow-xl p-4 border border-slate-100 animate-float">
+                            <div class="flex items-center gap-3">
+                                <div class="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center">
+                                    <i class="ph-fill ph-check-circle text-green-600 text-2xl"></i>
+                                </div>
+                                <div>
+                                    <p class="font-bold text-brandDark"><%= settings.hero_clients_count || '10+' %> Clienți</p>
+                                    <p class="text-sm text-textGray"><%= settings.hero_clients_text || 'mulțumiți în 2025' %></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="py-12 md:py-16 bg-brandDark relative overflow-hidden">
+        <div class="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(14,165,233,0.1),transparent_50%)]">
+        </div>
+        <div class="container mx-auto px-4 md:px-6 relative z-10">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-4">
+                <div class="text-center">
+                    <div class="text-3xl md:text-4xl font-extrabold text-white mb-1"><%= settings.stat_clients || '10+' %></div>
+                    <div class="text-slate-400 text-sm"><%= settings.stat_clients_label || 'Clienți mulțumiți' %></div>
+                </div>
+                <div class="text-center">
+                    <div class="text-3xl md:text-4xl font-extrabold text-white mb-1"><%= settings.stat_experience || '5+' %></div>
+                    <div class="text-slate-400 text-sm"><%= settings.stat_experience_label || 'Ani experiență' %></div>
+                </div>
+                <div class="text-center">
+                    <div class="text-3xl md:text-4xl font-extrabold text-white mb-1"><%= settings.stat_response || '24h' %></div>
+                    <div class="text-slate-400 text-sm"><%= settings.stat_response_label || 'Timp de răspuns' %></div>
+                </div>
+                <div class="text-center">
+                    <div class="text-3xl md:text-4xl font-extrabold text-white mb-1"><%= settings.stat_guarantee || '100%' %></div>
+                    <div class="text-slate-400 text-sm"><%= settings.stat_guarantee_label || 'Garanție calitate' %></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-16 md:py-24 bg-white">
+        <div class="container mx-auto px-4 md:px-6">
+            <div class="text-center max-w-2xl mx-auto mb-12 md:mb-16">
+                <span class="inline-block text-brandBlue font-semibold text-sm uppercase tracking-wider mb-3">Ce
+                    oferim</span>
+                <h2 class="text-3xl md:text-4xl font-bold text-brandDark mb-4">Serviciile noastre</h2>
+                <p class="text-textGray">Soluții complete pentru întreținerea și igienizarea sistemelor de climatizare
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <% services.forEach((service, index)=> { %>
+                    <div
+                        class="group bg-slate-50 hover:bg-white p-6 md:p-8 rounded-2xl border border-slate-100 hover:border-brandBlue/20 hover:shadow-xl transition-all duration-300">
+                        <div
+                            class="w-14 h-14 bg-brandBlue/10 group-hover:bg-brandBlue text-brandBlue group-hover:text-white rounded-2xl flex items-center justify-center mb-5 transition-all duration-300">
+                            <i class="ph <%= service.icon %> text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-brandDark mb-3">
+                            <%= service.title %>
+                        </h3>
+                        <p class="text-textGray leading-relaxed">
+                            <%= service.description %>
+                        </p>
+                    </div>
+                    <% }) %>
+            </div>
+
+            <div class="text-center mt-10">
+                <a href="#contact"
+                    class="inline-flex items-center gap-2 text-brandBlue font-semibold hover:text-blue-700 transition-colors">
+                    Solicită o consultație gratuită
+                    <i class="ph-bold ph-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section id="benefits" class="py-16 md:py-24 bg-slate-50">
+        <div class="container mx-auto px-4 md:px-6">
+            <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+                <!-- Content -->
+                <div>
+                    <span class="inline-block text-brandBlue font-semibold text-sm uppercase tracking-wider mb-3">De ce
+                        este important</span>
+                    <h2 class="text-3xl md:text-4xl font-bold text-brandDark mb-6">Beneficiile curățării regulate</h2>
+                    <p class="text-textGray mb-8 leading-relaxed">
+                        Un aparat de aer condiționat necurățat poate deveni o sursă de probleme de sănătate și costuri
+                        suplimentare. Iată ce câștigi prin întreținerea regulată:
+                    </p>
+
+                    <div class="space-y-4">
+                        <% benefits.forEach((item)=> { %>
+                            <div class="flex gap-4 p-4 bg-white rounded-xl border border-slate-100">
+                                <div
+                                    class="w-12 h-12 bg-<%= item.color %>-100 text-<%= item.color %>-600 rounded-xl flex items-center justify-center shrink-0">
+                                    <i class="ph-fill <%= item.icon %> text-xl"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-brandDark mb-1">
+                                        <%= item.title %>
+                                    </h3>
+                                    <p class="text-sm text-textGray">
+                                        <%= item.description %>
+                                    </p>
+                                </div>
+                            </div>
+                            <% }) %>
+                    </div>
+                </div>
+
+                <!-- Image -->
+                <div class="relative">
+                    <img src="https://images.unsplash.com/photo-1585771724684-38269d6639fd?q=80&w=2070&auto=format&fit=crop"
+                        alt="Beneficii curățare AC" class="rounded-3xl shadow-xl w-full object-cover aspect-square"
+                        loading="lazy">
+                    <div class="absolute inset-0 rounded-3xl bg-gradient-to-t from-brandDark/20 to-transparent"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="py-16 md:py-24 bg-white">
+        <div class="container mx-auto px-4 md:px-6">
+            <div class="text-center max-w-2xl mx-auto mb-12">
+                <span class="inline-block text-brandBlue font-semibold text-sm uppercase tracking-wider mb-3">Rezultate
+                    reale</span>
+                <h2 class="text-3xl md:text-4xl font-bold text-brandDark mb-4">Galerie lucrări</h2>
+                <p class="text-textGray">Imagini din intervențiile noastre. Diferența se vede.</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+                <% gallery.forEach((item, index)=> { %>
+                    <div class="group relative overflow-hidden rounded-2xl aspect-[4/3] cursor-pointer">
+                        <img src="<%= item.image_url %>" alt="<%= item.caption %>"
+                            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                            loading="lazy">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-brandDark/80 via-brandDark/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
+                            <p class="text-white font-semibold p-4 md:p-6">
+                                <%= item.caption %>
+                            </p>
+                        </div>
+                    </div>
+                    <% }) %>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="py-16 md:py-24 bg-slate-50">
+        <div class="container mx-auto px-4 md:px-6">
+            <div class="text-center max-w-2xl mx-auto mb-12">
+                <span
+                    class="inline-block text-brandBlue font-semibold text-sm uppercase tracking-wider mb-3">Recenzii</span>
+                <h2 class="text-3xl md:text-4xl font-bold text-brandDark mb-4">Ce spun clienții</h2>
+                <p class="text-textGray">Feedback-ul lor este cea mai bună recomandare.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <% testimonials.forEach((t)=> { %>
+                    <div
+                        class="bg-white p-6 md:p-8 rounded-2xl border border-slate-100 shadow-sm hover:shadow-lg transition-shadow duration-300">
+                        <!-- Stars -->
+                        <div class="flex gap-1 text-amber-400 mb-4">
+                            <% for(let i=0; i<t.rating; i++) { %>
+                                <i class="ph-fill ph-star"></i>
+                                <% } %>
+                        </div>
+
+                        <!-- Quote -->
+                        <p class="text-textGray mb-6 leading-relaxed">"<%= t.feedback %>"</p>
+
+                        <!-- Author -->
+                        <div class="flex items-center gap-3 pt-4 border-t border-slate-100">
+                            <div
+                                class="w-11 h-11 rounded-full bg-brandBlue/10 flex items-center justify-center text-brandBlue font-bold">
+                                <%= t.client_name.charAt(0) %>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-brandDark">
+                                    <%= t.client_name %>
+                                </h4>
+                                <span class="text-sm text-textGray">
+                                    <%= t.client_type %>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <% }) %>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 md:py-24 bg-white">
+        <div class="container mx-auto px-4 md:px-6">
+            <div class="max-w-5xl mx-auto">
+                <div class="bg-slate-50 rounded-3xl overflow-hidden border border-slate-100">
+                    <div class="grid lg:grid-cols-5">
+                        <!-- Info Side -->
+                        <div class="lg:col-span-2 bg-brandDark p-8 md:p-10 text-white relative overflow-hidden">
+                            <div
+                                class="absolute top-0 right-0 w-64 h-64 bg-brandBlue/20 rounded-full blur-3xl -mr-32 -mt-32">
+                            </div>
+                            <div class="relative z-10">
+                                <h3 class="text-2xl font-bold mb-4">Contactează-ne</h3>
+                                <p class="text-slate-400 mb-8">Suntem aici să te ajutăm. Răspundem în cel mai scurt
+                                    timp.</p>
+
+                                <div class="space-y-5">
+                                    <div class="flex items-center gap-4">
+                                        <div
+                                            class="w-11 h-11 rounded-xl bg-white/10 flex items-center justify-center shrink-0">
+                                            <i class="ph ph-phone text-lg"></i>
+                                        </div>
+                                        <div>
+                                            <div class="text-sm text-slate-400">Telefon</div>
+                                            <div class="font-medium"><%= settings.site_phone || '07xx xxx xxx' %></div>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center gap-4">
+                                        <div
+                                            class="w-11 h-11 rounded-xl bg-white/10 flex items-center justify-center shrink-0">
+                                            <i class="ph ph-envelope text-lg"></i>
+                                        </div>
+                                        <div>
+                                            <div class="text-sm text-slate-400">Email</div>
+                                            <div class="font-medium"><%= settings.site_email || 'contact@curatareac.ro' %></div>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center gap-4">
+                                        <div
+                                            class="w-11 h-11 rounded-xl bg-white/10 flex items-center justify-center shrink-0">
+                                            <i class="ph ph-map-pin text-lg"></i>
+                                        </div>
+                                        <div>
+                                            <div class="text-sm text-slate-400">Locație</div>
+                                            <div class="font-medium"><%= settings.site_location || 'Galați, România' %></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="mt-10 pt-8 border-t border-white/10">
+                                    <p class="text-sm text-slate-400 mb-3">Social Media</p>
+                                    <div class="flex gap-3">
+                                        <a href="<%= settings.facebook_url || '#' %>"
+                                            class="w-10 h-10 rounded-xl bg-white/10 hover:bg-blue-600 flex items-center justify-center transition-colors">
+                                            <i class="ph-fill ph-facebook-logo"></i>
+                                        </a>
+                                        <a href="<%= settings.instagram_url || '#' %>"
+                                            class="w-10 h-10 rounded-xl bg-white/10 hover:bg-pink-600 flex items-center justify-center transition-colors">
+                                            <i class="ph-fill ph-instagram-logo"></i>
+                                        </a>
+                                        <a href="<%= settings.whatsapp_url || '#' %>"
+                                            class="w-10 h-10 rounded-xl bg-white/10 hover:bg-green-600 flex items-center justify-center transition-colors">
+                                            <i class="ph-fill ph-whatsapp-logo"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Form Side -->
+                        <div class="lg:col-span-3 p-8 md:p-10">
+                            <h3 class="text-2xl font-bold text-brandDark mb-2">Programează o intervenție</h3>
+                            <p class="text-textGray mb-6">Completează formularul și te vom contacta în cel mai scurt
+                                timp.</p>
+
+                            <form id="bookingForm" class="space-y-5">
+                                <!-- Honeypot anti-spam (ascuns pentru utilizatori) -->
+                                <div class="absolute -left-[9999px]" aria-hidden="true">
+                                    <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+                                </div>
+
+                                <div class="grid sm:grid-cols-2 gap-4">
+                                    <div>
+                                        <label class="block text-sm font-medium text-brandDark mb-1.5">Nume
+                                            complet</label>
+                                        <input type="text" id="name" required minlength="2" maxlength="100"
+                                            class="w-full bg-white border border-slate-200 rounded-xl px-4 py-3 focus:outline-none focus:border-brandBlue focus:ring-2 focus:ring-brandBlue/20 transition-all"
+                                            placeholder="Ion Popescu">
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium text-brandDark mb-1.5">Telefon</label>
+                                        <input type="tel" id="phone" required pattern="^(\+40|0)[0-9]{9}$"
+                                            class="w-full bg-white border border-slate-200 rounded-xl px-4 py-3 focus:outline-none focus:border-brandBlue focus:ring-2 focus:ring-brandBlue/20 transition-all"
+                                            placeholder="07xx xxx xxx">
+                                        <p class="text-xs text-textGray mt-1">Format: 07xxxxxxxx sau +407xxxxxxxx</p>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <label class="block text-sm font-medium text-brandDark mb-1.5">Tip serviciu</label>
+                                    <select id="service" required
+                                        class="w-full bg-white border border-slate-200 rounded-xl px-4 py-3 focus:outline-none focus:border-brandBlue focus:ring-2 focus:ring-brandBlue/20 transition-all">
+                                        <option value="">Selectează serviciul</option>
+                                        <option>Curățare Standard</option>
+                                        <option>Igienizare Completă</option>
+                                        <option>Verificare Freon</option>
+                                        <option>Mentenanță anuală</option>
+                                    </select>
+                                </div>
+
+                                <div>
+                                    <label class="block text-sm font-medium text-brandDark mb-1.5">Mesaj
+                                        (opțional)</label>
+                                    <textarea id="message" rows="3" maxlength="500"
+                                        class="w-full bg-white border border-slate-200 rounded-xl px-4 py-3 focus:outline-none focus:border-brandBlue focus:ring-2 focus:ring-brandBlue/20 transition-all resize-none"
+                                        placeholder="Detalii suplimentare..."></textarea>
+                                    <p class="text-xs text-textGray mt-1 text-right"><span id="charCount">0</span>/500
+                                    </p>
+                                </div>
+
+                                <div id="formError" class="hidden text-red-600 text-sm bg-red-50 p-3 rounded-xl"></div>
+
+                                <button type="submit" id="submitBtn"
+                                    class="w-full bg-accentOrange hover:bg-accentHover text-white font-semibold py-3.5 rounded-xl shadow-lg shadow-orange-500/25 transition-all hover:-translate-y-0.5 active:translate-y-0 flex justify-center items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-y-0">
+                                    <i class="ph-fill ph-whatsapp-logo text-xl"></i>
+                                    <span id="submitText">Trimite pe WhatsApp</span>
+                                </button>
+
+                                <p class="text-xs text-center text-textGray">
+                                    Prin trimiterea formularului, accepți <a href="#"
+                                        class="text-brandBlue hover:underline">politica de confidențialitate</a>.
+                                </p>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-brandDark text-white py-12">
+        <div class="container mx-auto px-4 md:px-6">
+            <div class="grid md:grid-cols-3 gap-8 mb-8">
+                <!-- Logo & Description -->
+                <div>
+                    <div class="flex items-center gap-2.5 font-bold text-xl mb-4">
+                        <div class="w-9 h-9 bg-brandBlue rounded-xl flex items-center justify-center">
+                            <i class="ph-fill ph-fan"></i>
+                        </div>
+                        <%= settings.site_name || 'Curățare AC' %>
+                    </div>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Servicii profesionale de curățare și igienizare aer condiționat în <%= settings.site_location || 'Galați' %> și împrejurimi.
+                    </p>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="font-semibold mb-4">Link-uri rapide</h4>
+                    <div class="space-y-2">
+                        <a href="#services"
+                            class="block text-slate-400 hover:text-white text-sm transition-colors">Servicii</a>
+                        <a href="#benefits"
+                            class="block text-slate-400 hover:text-white text-sm transition-colors">Beneficii</a>
+                        <a href="#gallery"
+                            class="block text-slate-400 hover:text-white text-sm transition-colors">Galerie</a>
+                        <a href="#contact"
+                            class="block text-slate-400 hover:text-white text-sm transition-colors">Contact</a>
+                    </div>
+                </div>
+
+                <!-- Contact -->
+                <div>
+                    <h4 class="font-semibold mb-4">Contact</h4>
+                    <div class="space-y-2 text-sm text-slate-400">
+                        <p><%= settings.site_phone || '07xx xxx xxx' %></p>
+                        <p><%= settings.site_email || 'contact@curatareac.ro' %></p>
+                        <p><%= settings.site_location || 'Galați, România' %></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-slate-400 text-sm">&copy; <%= new Date().getFullYear() %> <%= settings.site_name || 'Curățare AC' %>. Toate drepturile rezervate.</p>
+                <div class="flex gap-4">
+                    <a href="<%= settings.facebook_url || '#' %>" class="text-slate-400 hover:text-white transition-colors">
+                        <i class="ph-fill ph-facebook-logo text-xl"></i>
+                    </a>
+                    <a href="<%= settings.instagram_url || '#' %>" class="text-slate-400 hover:text-white transition-colors">
+                        <i class="ph-fill ph-instagram-logo text-xl"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const menuBtn = document.getElementById('menuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const menuIcon = document.getElementById('menuIcon');
+        let menuOpen = false;
+
+        menuBtn.addEventListener('click', () => {
+            menuOpen = !menuOpen;
+            mobileMenu.classList.toggle('hidden');
+            menuIcon.classList.toggle('ph-list');
+            menuIcon.classList.toggle('ph-x');
+        });
+
+        // Close mobile menu on link click
+        document.querySelectorAll('.mobile-link').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                menuIcon.classList.add('ph-list');
+                menuIcon.classList.remove('ph-x');
+                menuOpen = false;
+            });
+        });
+
+        // Navbar scroll behavior
+        const navbar = document.getElementById('navbar');
+        let lastScrollY = 0;
+
+        window.addEventListener('scroll', () => {
+            const scrollY = window.scrollY;
+
+            // Show/hide on scroll
+            if (scrollY > lastScrollY && scrollY > 100) {
+                navbar.style.transform = 'translateY(-100%)';
+            } else {
+                navbar.style.transform = 'translateY(0)';
+            }
+
+            // Background style
+            if (scrollY > 50) {
+                navbar.classList.add('bg-white/95', 'backdrop-blur-md', 'shadow-sm');
+            } else {
+                navbar.classList.remove('bg-white/95', 'backdrop-blur-md', 'shadow-sm');
+            }
+
+            lastScrollY = scrollY;
+        });
+
+        // WhatsApp Form cu protecție anti-spam
+        const formLoadTime = Date.now();
+        let lastSubmitTime = 0;
+        const RATE_LIMIT_MS = 30000; // 30 secunde între trimiteri
+        const MIN_FILL_TIME_MS = 3000; // Minim 3 secunde pentru a completa formularul
+
+        // Character counter pentru mesaj
+        const messageInput = document.getElementById('message');
+        const charCount = document.getElementById('charCount');
+        messageInput.addEventListener('input', () => {
+            charCount.textContent = messageInput.value.length;
+        });
+
+        // Funcție pentru sanitizare text (previne injection)
+        function sanitizeInput(str) {
+            return str.replace(/[<>\"\'&]/g, '').trim();
+        }
+
+        // Validare număr de telefon românesc
+        function isValidRomanianPhone(phone) {
+            const cleaned = phone.replace(/\s/g, '');
+            return /^(\+40|0)[0-9]{9}$/.test(cleaned);
+        }
+
+        // Afișare erori
+        function showError(message) {
+            const errorDiv = document.getElementById('formError');
+            errorDiv.textContent = message;
+            errorDiv.classList.remove('hidden');
+        }
+
+        function hideError() {
+            document.getElementById('formError').classList.add('hidden');
+        }
+
+        document.getElementById('bookingForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            hideError();
+
+            const submitBtn = document.getElementById('submitBtn');
+            const submitText = document.getElementById('submitText');
+
+            // 1. Honeypot check - dacă câmpul ascuns e completat, e bot
+            const honeypot = document.getElementById('website').value;
+            if (honeypot) {
+                console.log('Spam detected');
+                return;
+            }
+
+            // 2. Time check - formularul completat prea repede = bot
+            const timeSinceLoad = Date.now() - formLoadTime;
+            if (timeSinceLoad < MIN_FILL_TIME_MS) {
+                showError('Te rugăm să completezi formularul cu atenție.');
+                return;
+            }
+
+            // 3. Rate limiting - previne spam-ul repetitiv
+            const timeSinceLastSubmit = Date.now() - lastSubmitTime;
+            if (lastSubmitTime > 0 && timeSinceLastSubmit < RATE_LIMIT_MS) {
+                const secondsLeft = Math.ceil((RATE_LIMIT_MS - timeSinceLastSubmit) / 1000);
+                showError(`Te rugăm să aștepți ${secondsLeft} secunde înainte de a trimite din nou.`);
+                return;
+            }
+
+            // Preluare și sanitizare date
+            const name = sanitizeInput(document.getElementById('name').value);
+            const phone = document.getElementById('phone').value.replace(/\s/g, '');
+            const service = sanitizeInput(document.getElementById('service').value);
+            const message = sanitizeInput(document.getElementById('message').value);
+            const adminPhone = "<%= settings.site_phone || '' %>";
+
+            // 4. Validări suplimentare
+            if (name.length < 2) {
+                showError('Numele trebuie să conțină cel puțin 2 caractere.');
+                return;
+            }
+
+            if (!isValidRomanianPhone(phone)) {
+                showError('Te rugăm să introduci un număr de telefon valid (ex: 0712345678).');
+                return;
+            }
+
+            if (!service) {
+                showError('Te rugăm să selectezi un serviciu.');
+                return;
+            }
+
+            // Actualizare timestamp pentru rate limiting
+            lastSubmitTime = Date.now();
+
+            // Dezactivare buton temporar
+            submitBtn.disabled = true;
+            submitText.textContent = 'Se trimite...';
+
+            // Construire mesaj WhatsApp cu encoding corect
+            let waMessage = `Salut! Vreau o programare.%0A%0A*Nume:* ${encodeURIComponent(name)}%0A*Telefon:* ${encodeURIComponent(phone)}%0A*Serviciu:* ${encodeURIComponent(service)}`;
+            if (message) {
+                waMessage += `%0A*Mesaj:* ${encodeURIComponent(message)}`;
+            }
+
+            // Deschide WhatsApp
+            window.open(`https://wa.me/${adminPhone}?text=${waMessage}`, '_blank');
+
+            // Re-activare buton după 2 secunde
+            setTimeout(() => {
+                submitBtn.disabled = false;
+                submitText.textContent = 'Trimite pe WhatsApp';
+            }, 2000);
+        });
+    </script>
+</body>
+
+</html>
