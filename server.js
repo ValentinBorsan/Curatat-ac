@@ -9,21 +9,19 @@ const pg = require('pg');
 
 const app = express();
 const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_KEY);
-
+app.set('trust proxy', 1);
 // Middleware
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
-// Sesiune cu PostgreSQL store (Supabase)
 app.use(session({
     store: new pgSession({
         pool: new pg.Pool({
             connectionString: process.env.DATABASE_URL,
             ssl: { rejectUnauthorized: false },
-            // FORȚĂM IPv4 PENTRU A EVITA EROAREA DE COMPATIBILITATE
-            family: 4 
+            family: 4 // IPv4 fix
         }),
         tableName: 'session',
         createTableIfMissing: true
@@ -33,10 +31,11 @@ app.use(session({
     saveUninitialized: false,
     cookie: {
         maxAge: 24 * 60 * 60 * 1000,
-        secure: process.env.NODE_ENV === 'production'
+        secure: process.env.NODE_ENV === 'production', // Devine true pe Render
+        sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax', // <--- Recomandat pentru cross-site cookies
+        httpOnly: true
     }
 }));
-
 // Middleware de verificare autentificare
 const requireAuth = (req, res, next) => {
     if (req.session.isAdmin) {
