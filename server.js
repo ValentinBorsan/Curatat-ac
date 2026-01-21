@@ -102,18 +102,34 @@ app.get('/logout', (req, res) => {
     res.redirect('/');
 });
 
-// Dashboard Admin
+// Dashboard Admin - Versiune cu Debugging
 app.get('/admin', requireAuth, async (req, res) => {
-    // Aici Supabase poate returna null daca e o eroare
-    const { data: services } = await supabase.from('services').select('*').order('id');
-    const { data: testimonials } = await supabase.from('testimonials').select('*').order('id');
-    const { data: gallery } = await supabase.from('gallery').select('*').order('id', { ascending: false });
-    const { data: benefits } = await supabase.from('benefits').select('*').order('id');
-    const { data: settingsData } = await supabase.from('settings').select('*');
+    console.log("--- Începere încărcare Dashboard Admin ---");
+
+    // 1. Fetch Services
+    const { data: services, error: errServices } = await supabase.from('services').select('*').order('id');
+    if (errServices) console.error("Eroare Servicii:", errServices);
+    else console.log(`Servicii găsite: ${services?.length}`);
+
+    // 2. Fetch Testimonials
+    const { data: testimonials, error: errTestim } = await supabase.from('testimonials').select('*').order('id');
+    if (errTestim) console.error("Eroare Testimoniale:", errTestim);
+
+    // 3. Fetch Gallery
+    const { data: gallery, error: errGallery } = await supabase.from('gallery').select('*').order('id', { ascending: false });
+    if (errGallery) console.error("Eroare Galerie:", errGallery);
+
+    // 4. Fetch Benefits
+    const { data: benefits, error: errBenefits } = await supabase.from('benefits').select('*').order('id');
+    if (errBenefits) console.error("Eroare Beneficii:", errBenefits);
+
+    // 5. Fetch Settings
+    const { data: settingsData, error: errSettings } = await supabase.from('settings').select('*');
+    if (errSettings) console.error("Eroare Setări:", errSettings);
 
     const settings = settingsToObject(settingsData);
 
-   
+    // Randare cu protecție la null (|| [])
     res.render('admin', { 
         services: services || [], 
         testimonials: testimonials || [], 
